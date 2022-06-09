@@ -1,0 +1,42 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<title> Agregar Huesped </title>
+
+<a class="nav-link active" href="{%url  'index' %}"> <b>Volver</b></a>
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+       <h1>CARGAR UN HUESPED</h1>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col">
+        
+       {% if actualizar_huesped %}
+           <form action="{% url  'actualizar_huesped' %}" method="post">
+       {% else %}     
+           <form action="{% url 'cargar_huesped' %}" method="post">
+       {% endif %}
+ 
+       {% csrf_token %} 
+       {% bootstrap_form form_huesped %}
+     
+       {% if actualizar %}
+         {% bootstrap_button "Actualizar" button_type="submit" button_class="btn-primary" %} 
+       {% else %}
+         {% bootstrap_button "Guardar" button_type="submit" button_class="btn-primary" %}
+       {% endif %}
+       
+       </form>
+      </div>
+    </div>
+  </div>
+

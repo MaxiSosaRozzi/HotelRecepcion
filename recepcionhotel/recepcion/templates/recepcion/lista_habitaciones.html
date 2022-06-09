@@ -1,0 +1,79 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<title> Habitaciones </title>
+
+<a class="nav-link active" href="{%url  'index' %}"> <b>Volver</b></a>
+
+<!-- TABLA/ACCIONES HABITACION--><hr>
+
+  {% if resultados_busqueda_habitacion %}
+  <h1>Resultados de la búsqueda de habitaciones/h1>
+      {%endif%}
+  
+  <div class="container">    
+  
+    <div class="row">
+    <div class="col">
+      {% url 'cargar_habitacion' as cargar_habitacion_url %}
+      {% url 'buscar_habitacion' as buscar_habitacion_url %}
+      {% bootstrap_button "Agregar Habitacion" button_class="btn-success" button_type="link" href=cargar_habitacion_url %}
+      {% bootstrap_button "Buscar Habitacion" button_class="btn-success" button_type="link" href=buscar_habitacion_url %}  
+      <div>
+    <div>
+    <br>
+
+    <div class="row">
+      <div class="col">
+          {% if habitaciones %}
+          <table class="table">
+              <thead>
+                  <th scope="col">Identificador</th>
+                  <th scope="col">Numero De Habitacion</th>
+                  <th scope="col">Tipo de Habitacion</th>
+                  <th scope="col">Cantidad de Huéspedes</th>
+                  <th scope="col">Condicion</th>
+                  <th scope="col">Acciones</th>
+              </thead>
+          
+              {% for h in habitaciones %}
+              <tbody>
+                  <tr>
+                      <th scope="row">{{t.id}} </th>
+                      <td> {{h.numhabitacion}} </td>
+                      <td> {{h.tipohabitacion}} </td>
+                      <td> {{h.canthuespedes}} </td>
+                      <td> {{h.condicion}} </td>
+                      <td>
+                        {% url 'borrar_habitacion' identificador=h.id as borrar_habitacion_url %}
+                        {% url 'actualizar_habitacion' identificador=h.id as actualizar_habitacion_url %} 
+                        {% bootstrap_button "Borrar Habitacion" size="sm" button_class="btn-danger" button_type="link" href=borrar_habitacion_url %}
+                        {% bootstrap_button "Actualizar Habitacion" size="sm" button_class="btn-dark" button_type="link" href=actualizar_habitacion_url %}
+                      </td>
+                  </tr>
+              </tbody>
+              {% endfor %}
+          </table>
+          {% else %}
+              <p><b>No tienes Habitaciones Cargadas</b></p>
+          {% endif %}
+      </div>
+    </div>
+  </div>  
+
+<br><br><br>
+
+
+<ul class="nav bg-dark fixed-bottom justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="{%url  'index' %}">Coder house - Recepcion Hotel - {% now 'd-m-Y' %}</a>
+    </li>
+</ul>  
+ 
+  

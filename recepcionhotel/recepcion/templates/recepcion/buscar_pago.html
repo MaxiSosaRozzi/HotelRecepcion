@@ -1,0 +1,43 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<title> Buscar Pago </title>
+
+<a class="nav-link active" href="{%url  'lista_pagos' %}"> <b>Volver</b></a>
+
+{% if resultados_busqueda_tarjeta %}
+<h1>Resultados de la busqueda</h1>
+{%endif%}  
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+       <h1>BUSCAR UN PAGO</h1>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col">
+       <form action="{% url 'buscar_pago'%}" method="get">
+          {% csrf_token %} 
+          {% bootstrap_form form_buscarpagotarjeta %}
+          {% bootstrap_button "Buscar el Pago" button_type="submit" button_class="btn-primary" %}
+       </form>
+      </div>
+    </div>
+  </div>
+        
+</form>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</div>
+</div>

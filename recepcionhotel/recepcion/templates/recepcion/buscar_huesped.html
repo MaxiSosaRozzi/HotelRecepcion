@@ -1,0 +1,44 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+<a class="nav-link active" href="{%url  'index' %}"> <b>Volver</b></a>
+
+<title> Buscar Huesped </title>
+
+{% if resultados_busqueda_huespedes %}
+<h1>Resultados de la busqueda</h1>
+{%endif%}  
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+       <h1>BUSCAR UN HUESPED</h1>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col">
+       <form action="{% url 'buscar_huesped'%}" method="get">
+          {% csrf_token %} 
+          {% bootstrap_form form_buscarhuesped %}
+          {% bootstrap_button "Buscar" button_type="submit" button_class="btn-primary" %}
+       </form>
+      </div>
+    </div>
+  </div>
+        
+</form>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</div>
+</div>

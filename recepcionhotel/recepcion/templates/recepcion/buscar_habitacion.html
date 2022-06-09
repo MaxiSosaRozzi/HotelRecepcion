@@ -1,0 +1,38 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+<a class="nav-link active" href="{%url  'lista_habitaciones' %}"> <b>Volver</b></a>
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+       <h1>BUSCAR UNA HABITACION POR NUMERO</h1>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col">
+       <form action="{% url 'buscar_habitacion'%}" method="get">
+          {% csrf_token %} 
+          {% bootstrap_form form_buscarhabitacion %}
+          {% bootstrap_button "Buscar Habitacion" button_type="submit" button_class="btn-primary" %}
+       </form>
+      </div>
+    </div>
+  </div>
+        
+</form>
+
+<br>
+<br>
+<br>
+<br>
+</div>
+</div>
+</div>

@@ -1,0 +1,72 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<title> Pagos </title>
+
+<a class="nav-link active" href="{%url  'index' %}"> <b>Volver</b></a>
+
+{% if resultados_busqueda_tarjeta %}
+<h1>Resultados de la búsqueda de Pagos </h1>
+    {%endif%}
+
+
+<!-- TABLA/ACCIONES TARJETA-->
+<hr>
+<div class="container">    
+  <div class="row">
+    <div class="col">
+      {% url 'cargar_pago' as cargar_pago_url %}
+      {% url 'buscar_pago' as buscar_pago_url %}
+      {% bootstrap_button "Agregar Pago" button_class="btn-warning" button_type="link" href=cargar_pago_url %}
+      {% bootstrap_button "Buscar Pago" button_class="btn-warning" button_type="link" href=buscar_pago_url %}  
+    <div>
+  <div>
+<br>
+
+  <div class="row">
+    <div class="col">
+        {% if tarjetas %}
+        <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Numero De Tarjeta</th>
+                <th scope="col">Código de Seguridad</th>
+                <th scope="col">Nombre de Propietario</th>
+                <th scope="col">Cuotas</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Acciones</th>
+            </thead>
+        
+            {% for t in tarjetas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{t.id}} </th>
+                    <td> {{t.numtarjeta}} </td>
+                    <td> {{t.codseguridad}} </td>
+                    <td> {{t.nombrepropietario}} </td>
+                    <td> {{t.cuotas}} </td>
+                    <td> {{t.valor}} </td>
+                    <td>
+                      {% url 'borrar_pago' identificador=t.id as borrar_pago_url %}
+                      {% url 'actualizar_pago' identificador=t.id as actualizar_pago_url %} 
+                      {% bootstrap_button "Borrar Pago" size="sm" button_class="btn-danger" button_type="link" href=borrar_pago_url %}
+                      {% bootstrap_button "Actualizar Pago" size="sm" button_class="btn-dark" button_type="link" href=actualizar_pago_url %}
+
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p><b>No tienes Pagos Cargados</b></p>
+        {% endif %}
+    </div>
+  </div>
+</div>
+

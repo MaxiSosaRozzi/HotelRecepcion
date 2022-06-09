@@ -1,0 +1,43 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+title> Agregar Pago </title>
+
+<a class="nav-link active" href="{%url  'lista_pagos' %}"> <b>Volver</b></a>
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+       <h1>CARGAR UN PAGO</h1>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col">
+        
+       {% if actualizar_pago %}
+           <form action="{% url 'actualizar_pago' %}" method="post">
+       {% else %}     
+           <form action="{% url 'cargar_pago'%}" method="post">
+       {% endif %}
+ 
+       {% csrf_token %} 
+       {% bootstrap_form form_pago %}
+     
+       {% if actualizar %}
+         {% bootstrap_button "Actualizar Pago" button_type="submit" button_class="btn-primary" %} 
+       {% else %}
+         {% bootstrap_button "Guardar Pago" button_type="submit" button_class="btn-primary" %}
+       {% endif %}
+       
+       
+       </form>
+      </div>
+    </div>
+  </div>
+
