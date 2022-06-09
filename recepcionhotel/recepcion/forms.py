@@ -39,10 +39,10 @@ class BuscarhuespedForm(forms.Form):
     palabra_a_buscar = forms.CharField(label="Buscar Huesped", max_length=100) 
 
 class BuscarTarjetaForm(forms.Form):
-    palabras_a_buscar = forms.CharField(label="Buscar Por Nombre de Propietario", max_length=100)
+    palabra_a_buscar = forms.CharField(label="Buscar Por Nombre de Titular", max_length=100)
 
 class BuscarHabitacionForm(forms.Form):
-    numero_a_buscar = forms.CharField(label="Buscar Habitacion", max_length=100)
+    palabra_a_buscar = forms.IntegerField(label="Buscar Habitacion")
 
 
   

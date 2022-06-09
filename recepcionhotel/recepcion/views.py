@@ -225,17 +225,16 @@ def buscarhuesped(request):
         return render(request, 'recepcion/buscar_huesped.html', {"form_buscarhuesped": form_buscarhuesped}) 
 
 def buscarpagotarjeta(request):
-    if request.method == "GET":
-        form_buscarpagotarjeta = BuscarTarjetaForm()
-        
-        return render(request, 'recepcion/buscar_pago.html', {"form_buscarpagotarjeta": form_buscarpagotarjeta})
-
-    elif request.method == "POST":
-        form_buscarpagotarjeta = BuscarTarjetaForm(request.POST)
+    
+    if request.GET.get("palabra_a_buscar") and request.method == "GET":
+        form_buscarpagotarjeta = BuscarTarjetaForm(request.GET)
         if form_buscarpagotarjeta.is_valid():
-            palabra_a_buscar = form_buscarpagotarjeta.cleaned_data['palabra_a_buscar'] 
-            tarjetas = PagoTarjeta.objects.filter(nombre_icontains=palabra_a_buscar)
-        return render(request, 'recepcion/lista_pagos.html', {"tarjetas": tarjetas})
+            tarjetas = PagoTarjeta.objects.filter(nombre__icontains=request.GET.get("pago_a_buscar"))
+            return  render(request, 'recepcion/lista_pagos.html', {"tarjetas": tarjetas, "resultados_busqueda":True})
+
+    elif request.method == "GET":
+        form_buscarpagotarjeta = BuscarTarjetaForm()
+        return render(request, 'recepcion/buscar_pago.html', {"form_buscarpagotarjeta": form_buscarpagotarjeta})
 
 def buscarhabitacion(request):
     if request.GET.get("numero_a_buscar") and request.method == "GET":
@@ -244,7 +243,7 @@ def buscarhabitacion(request):
             habitaciones = Habitacion.objects.filter(numhabitacion__icontains=request.GET.get("numero_a_buscar"))
             return  render(request, 'recepcion/lista_habitaciones.html', {"habitaciones": habitaciones, "resultados_busqueda_habitacion":True})
 
-    elif request.method == "GET":
+    elif request.method == "POST":
         form_buscarhabitacion = BuscarHabitacionForm()
         return render(request, 'recepcion/buscar_habitacion.html', {"form_buscarhabitacion": form_buscarhabitacion}) 
 

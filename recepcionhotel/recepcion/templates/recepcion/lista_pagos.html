@@ -9,11 +9,7 @@
 
 <title> Pagos </title>
 
-<a class="nav-link active" href="{%url  'index' %}"> <b>Volver</b></a>
-
-{% if resultados_busqueda_tarjeta %}
-<h1>Resultados de la búsqueda de Pagos </h1>
-    {%endif%}
+<a class="nav-link active" href="{%url  'index' %}"> <b>Volver Home</b></a>
 
 
 <!-- TABLA/ACCIONES TARJETA-->
@@ -23,11 +19,13 @@
     <div class="col">
       {% url 'cargar_pago' as cargar_pago_url %}
       {% url 'buscar_pago' as buscar_pago_url %}
-      {% bootstrap_button "Agregar Pago" button_class="btn-warning" button_type="link" href=cargar_pago_url %}
-      {% bootstrap_button "Buscar Pago" button_class="btn-warning" button_type="link" href=buscar_pago_url %}  
+      {% bootstrap_button "Agregar Pagos" button_class="btn-warning" button_type="link" href=cargar_pago_url %}
+      {% bootstrap_button "Buscar Pagos" button_class="btn-warning" button_type="link" href=buscar_pago_url %}  
     <div>
   <div>
 <br>
+
+
 
   <div class="row">
     <div class="col">
