@@ -229,7 +229,7 @@ def buscarpagotarjeta(request):
     if request.GET.get("palabra_a_buscar") and request.method == "GET":
         form_buscarpagotarjeta = BuscarTarjetaForm(request.GET)
         if form_buscarpagotarjeta.is_valid():
-            tarjetas = PagoTarjeta.objects.filter(nombre__icontains=request.GET.get("pago_a_buscar"))
+            tarjetas = PagoTarjeta.objects.filter(nombrepropietario__icontains=request.GET.get("palabra_a_buscar"))
             return  render(request, 'recepcion/lista_pagos.html', {"tarjetas": tarjetas, "resultados_busqueda":True})
 
     elif request.method == "GET":
