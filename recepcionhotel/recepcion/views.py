@@ -237,13 +237,13 @@ def buscarpagotarjeta(request):
         return render(request, 'recepcion/buscar_pago.html', {"form_buscarpagotarjeta": form_buscarpagotarjeta})
 
 def buscarhabitacion(request):
-    if request.GET.get("numero_a_buscar") and request.method == "GET":
+    if request.GET.get("palabra_a_buscar") and request.method == "GET":
         form_buscarhabitacion = BuscarhuespedForm(request.GET)
         if form_buscarhabitacion.is_valid():
-            habitaciones = Habitacion.objects.filter(numhabitacion__icontains=request.GET.get("numero_a_buscar"))
+            habitaciones = Habitacion.objects.filter(numhabitacion__icontains=request.GET.get("palabra_a_buscar"))
             return  render(request, 'recepcion/lista_habitaciones.html', {"habitaciones": habitaciones, "resultados_busqueda_habitacion":True})
 
-    elif request.method == "POST":
+    elif request.method == "GET":
         form_buscarhabitacion = BuscarHabitacionForm()
         return render(request, 'recepcion/buscar_habitacion.html', {"form_buscarhabitacion": form_buscarhabitacion}) 
 
