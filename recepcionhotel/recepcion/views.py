@@ -54,7 +54,7 @@ def agregarhuesped(request):
     else:
         return HttpResponseBadRequest("Error no conzco ese metodo para esta request")
 
-    return render(request, 'recepcion/carga_huesped.html', {'form_huesped': form_huesped})
+    return render(request, 'recepcion/carga_huesped.html', {'form': form_huesped})
 
 def agregarpagotarjeta(request):
    

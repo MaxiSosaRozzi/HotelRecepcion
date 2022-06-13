@@ -10,6 +10,7 @@ urlpatterns = [
     path('borrar_pago/<identificador>', borrarpagotarjeta, name="borrar_pago"),
     path('borrar_habitacion/<identificador>', borrarhabitacion, name="borrar_habitacion"),
     path('actualizar_huesped/', actualizarhuesped, name="actualizar_huesped"),
+    path('actualizar_huesped/<identificador>', actualizarhuesped, name="actualizar_huesped"),
     path('actualizar_pago/', actualizarpagotarjeta, name="actualizar_tarjeta"),
     path('actualizar_habitacion/', actualizarhabitacion, name="actualizar_habitacion"),
     path('buscar_huesped/', buscarhuesped, name="buscar_huesped"),
