@@ -11,15 +11,20 @@
 ## Clonar el proyecto y correr el server:
 
 > git clone https://github.com/MaxiSosaRozzi/HotelRecepcion.git
+ 
 > cd recepcionhotel
+ 
 > python manage.py migrate
+
 > python manage.py runserver
 
-✅ Alta, Baja y Búsqueda de Huésped.
-✅ Alta, Baja y Búsqueda de Pagos.
-✅ Alta, Baja y Búsqueda de Habitaciones.
+✅ ABM Completo de Huéspedes.
 
-⭕ Nos encontramos trabajando en: Mejorar interfaz, botón actualizar de cada modelo.
+✅ ABM Completo de Pagos con Tarjeta.
+
+✅ ABM Completo de Habitaciones a registrar.
+
+
 ⭕ Todos los avances una vez chequeados y trackeados serán subidos con su respectivo commit.
 
 
