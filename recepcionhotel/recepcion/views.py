@@ -40,7 +40,6 @@ def agregarhuesped(request):
     if request.method == "POST":
         form_huesped = AgregarhuespedForm(request.POST)
         if form_huesped.is_valid():
-
             nombre = form_huesped.cleaned_data['nombre']
             apellido = form_huesped.cleaned_data['apellido']
             documento = form_huesped.cleaned_data['documento']
@@ -168,7 +167,7 @@ def actualizarpagotarjeta(request, identificador=''):
         }
 
         form_actualizarpago = ActualizarTarjetaForm(initial=initial)
-        return render(request, 'recepcion/carga_pago.html', {'form': form_actualizarpago, 'actualizar_pago': True})
+        return render(request, 'recepcion/carga_pago.html', {'form_pago': form_actualizarpago, 'actualizar_pago': True})
 
     elif request.method == "POST":
         form_actualizarpago = ActualizarTarjetaForm(request.POST)
@@ -180,7 +179,7 @@ def actualizarpagotarjeta(request, identificador=''):
             tarjeta.cuotas = form_actualizarpago.cleaned_data['cuotas']
             tarjeta.valor = form_actualizarpago.cleaned_data['valor'] 
             tarjeta.save()
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("lista_pagos"))
 
 
 #Habitación
@@ -198,7 +197,7 @@ def actualizarhabitacion(request, identificador=''):
         }
 
         form_actualizarhabitacion = ActualizarHabitacionForm(initial=initial)
-        return render(request, 'recepcion/carga_habitacion.html', {'form': form_actualizarhabitacion, 'actualizar_habitacion': True})
+        return render(request, 'recepcion/carga_habitacion.html', {'form_habitacion': form_actualizarhabitacion, 'actualizar_habitacion': True})
 
     elif request.method == "POST":
         form_actualizarhabitacion = ActualizarHabitacionForm(request.POST)
@@ -209,9 +208,9 @@ def actualizarhabitacion(request, identificador=''):
             habitacion.canthuespedes = form_actualizarhabitacion.cleaned_data['canthuespedes']
             habitacion.condicion = form_actualizarhabitacion.cleaned_data['condicion']
             habitacion.save()
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("lista_habitaciones"))
 
-#FUNCIONBUSCAR 
+#FUNCIONBUSCAR  
 
 def buscarhuesped(request):
     if request.GET.get("palabra_a_buscar") and request.method == "GET":

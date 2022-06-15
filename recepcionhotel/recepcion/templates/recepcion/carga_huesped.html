@@ -20,17 +20,19 @@
       <div class="row">
       <div class="col">
         
-       {% if actualizar_huesped %}
-           <form action="{% url  'actualizar_huesped' %}" method="post">
-       {% endif %}
+    {% if actualizar_huesped %}
+        <form action="{% url 'actualizar_huesped' %}" method="post">
+    {% else %}     
+        <form action="{% url 'cargar_huesped'%}" method="post">
+    {% endif %}
  
        {% csrf_token %} 
        {% bootstrap_form form %}
      
        {% if actualizar_huesped %}
-         {% bootstrap_button "Actualizar" button_type="submit" button_class="btn-primary" %} 
+         {% bootstrap_button "Actualizar Huesped" button_type="submit" button_class="btn-primary" %} 
        {% else %}
-         {% bootstrap_button "Guardar" button_type="submit" button_class="btn-primary" %}
+         {% bootstrap_button "Guardar Huesped" button_type="submit" button_class="btn-success" %}
        {% endif %}
        
        </form>
